@@ -40,6 +40,11 @@ about:
   license_family: Other
   license_file: LICENSE
   summary: Read GCS, ABS and local paths with the same interface
+  description: |
+    blobfile is a Python library for reading and writing files on local disk,
+    Google Cloud Storage (GCS), and Azure Blob Storage (ABS) with a single,
+    unified interface compatible with Python's built-in file I/O.
+  doc_url: https://github.com/blobfile/blobfile
   dev_url: https://github.com/blobfile/blobfile
 
 extra:
