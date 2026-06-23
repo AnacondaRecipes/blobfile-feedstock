@@ -6,21 +6,21 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/christopher-hesse/blobfile/archive/v{{ version }}.tar.gz
-  sha256: 0f3404a05aff1f2effa2b328852bff37de90ee49f910148110caace22890949c
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 78514a9265b9aa7d4607042dc77c5e6461ab27036450ad8e1f6ef9a7f29bf958
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
   number: 0
+  skip: true  # [py<310]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python
     - pip
-    - setuptools >=64
+    - setuptools >=69
   run:
-    - python >={{ python_min }}
+    - python
     - pycryptodomex >=3.8
     - urllib3 >=2
     - lxml >=4.9
@@ -33,14 +33,21 @@ test:
     - pip check
   requires:
     - pip
-    - python {{ python_min }}
 
 about:
-  home: https://github.com/christopher-hesse/blobfile
+  home: https://github.com/blobfile/blobfile
   license: Unlicense
+  license_family: Other
   license_file: LICENSE
-  summary: Read Google Cloud Storage, Azure Blobs, and local paths with the same interface
+  summary: Read GCS, ABS and local paths with the same interface
+  description: |
+    blobfile is a Python library for reading and writing files on local disk,
+    Google Cloud Storage (GCS), and Azure Blob Storage (ABS) with a single,
+    unified interface compatible with Python's built-in file I/O.
+  doc_url: https://github.com/blobfile/blobfile
+  dev_url: https://github.com/blobfile/blobfile
 
 extra:
   recipe-maintainers:
     - BastianZim
+    - xkong-anaconda
